@@ -155,6 +155,7 @@ const initWidget = () => {
   
   let onProductClick;
   if (data.onProductClicktoDataLayer && data.onProductClickEventName) {
+
     const dataLayerPush = createQueue('dataLayer');
     onProductClick = (event, product) => {
       dataLayerPush({
@@ -275,6 +276,45 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "dataLayer"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
               }
             ]
           }
@@ -322,6 +362,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 30. 1. 2023 10:59:30
+Created on 30. 1. 2023 15:21:26
 
 
