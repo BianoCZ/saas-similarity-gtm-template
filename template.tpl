@@ -92,6 +92,19 @@ ___TEMPLATE_PARAMETERS___
         "help": "Maximal number of similar products displayed in the widget."
       },
       {
+        "type": "TEXT",
+        "name": "vatRate",
+        "displayName": "VAT rate",
+        "simpleValueType": true,
+        "help": "Fill in this option in case you want to display both prices without VAT and with VAT in the widget.",
+        "valueValidators": [
+          {
+            "type": "PERCENTAGE"
+          }
+        ],
+        "valueUnit": "%"
+      },
+      {
         "type": "CHECKBOX",
         "name": "onProductClicktoDataLayer",
         "checkboxText": "Push product click event to DataLayer",
@@ -179,6 +192,7 @@ const initWidget = () => {
     productId: data.productId,
     numberOfProducts: data.numberOfProducts,
     onProductClick: onProductClick,
+    vatRate: data.vatRate,
   });
   
   data.gtmOnSuccess();
