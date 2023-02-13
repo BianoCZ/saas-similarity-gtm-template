@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://saas.bianoapi.com/sdk/v1/cs_CZ/doc/GUIDE-SIMILARITY-GTM-EN.pdf"
 versions:
+  - sha: 3fa29efac0b1dbb56cf9604454816d6475cb0f77
+    changeNotes: Add support for vatRate
   - sha: fc991dc94070da09ac19172cfb24b26c4ab8e6f5
     changeNotes: Update template info
   - sha: b6bafddf05060ee6fd9edbd4421d93f8709de724
