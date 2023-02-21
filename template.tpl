@@ -81,6 +81,34 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "type": "TEXT",
+        "name": "title",
+        "displayName": "Title",
+        "simpleValueType": true,
+        "help": "When title is not set, it defaults to \"Similar products\""
+      },
+      {
+        "type": "TEXT",
+        "name": "fallbackTitle",
+        "displayName": "Fallback Title",
+        "simpleValueType": true,
+        "help": "When reference product cannot be found, widget displays Recommended products and title changes to \"Recommended products\" by default.",
+        "enablingConditions": [
+          {
+            "paramName": "fallbackHide",
+            "paramValue": true,
+            "type": "NOT_EQUALS"
+          }
+        ]
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "fallbackHide",
+        "checkboxText": "Fallback Hide",
+        "simpleValueType": true,
+        "help": "When reference product cannot be found, you can disable widget entirely."
+      },
+      {
+        "type": "TEXT",
         "name": "numberOfProducts",
         "displayName": "Number of products",
         "simpleValueType": true,
@@ -163,6 +191,8 @@ const callInWindow = require('callInWindow');
 const copyFromWindow = require('copyFromWindow');
 const createQueue = require('createQueue');
 const injectScript = require('injectScript');
+const makeInteger = require('makeInteger');
+const makeNumber = require('makeNumber');
 
 const initWidget = () => {
   callInWindow('BianoSaas.initGlobal', {
@@ -173,7 +203,6 @@ const initWidget = () => {
   
   let onProductClick;
   if (data.onProductClicktoDataLayer && data.onProductClickEventName) {
-
     const dataLayerPush = createQueue('dataLayer');
     onProductClick = (event, product) => {
       dataLayerPush({
@@ -190,9 +219,12 @@ const initWidget = () => {
   callInWindow('BianoSaas.globalInstance.drawSimilarProductsWidget', {
     container: '#' + data.htmlElementId, 
     productId: data.productId,
-    numberOfProducts: data.numberOfProducts,
+    numberOfProducts: data.numberOfProducts ? makeInteger(data.numberOfProducts) : undefined,
     onProductClick: onProductClick,
-    vatRate: data.vatRate,
+    vatRate: data.vatRate !== undefined ? makeNumber(data.vatRate) : undefined,
+    title: data.title,
+    fallbackTitle: data.fallbackTitle,
+    fallbackHide: data.fallbackHide,
   });
   
   data.gtmOnSuccess();
