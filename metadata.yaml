@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://saas.bianoapi.com/sdk/v1/cs_CZ/doc/GUIDE-SIMILARITY-GTM-EN.pdf"
 versions:
+  - sha: 6e1846f9271ff848c25fc17013b56b795d0b8886
+    changeNotes: Support for custom product template
   - sha: 031a678f1df3757ddc3bba210b195c04fb2e6f6b
     changeNotes: Support for title and fallback options
   - sha: 3fa29efac0b1dbb56cf9604454816d6475cb0f77
