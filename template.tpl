@@ -179,6 +179,32 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Disable styles",
         "simpleValueType": true,
         "help": "Disables default CSS, so all the Biano SaaS components can be re-styled."
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "customProductTemplate",
+        "checkboxText": "Custom product template",
+        "simpleValueType": true,
+        "help": "Allows to override default template for product rendering."
+      },
+      {
+        "type": "TEXT",
+        "name": "productTemplate",
+        "displayName": "Product template",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "customProductTemplate",
+            "paramValue": true,
+            "type": "EQUALS"
+          }
+        ],
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "lineCount": 15
       }
     ]
   }
@@ -225,6 +251,7 @@ const initWidget = () => {
     title: data.title,
     fallbackTitle: data.fallbackTitle,
     fallbackHide: data.fallbackHide,
+    productTemplate: data.productTemplate,
   });
   
   data.gtmOnSuccess();
