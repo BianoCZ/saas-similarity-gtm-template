@@ -215,10 +215,24 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "CHECKBOX",
-        "name": "customProductTemplate",
-        "checkboxText": "Custom product template",
+        "name": "customTemplates",
+        "checkboxText": "Custom carousel and product template",
         "simpleValueType": true,
-        "help": "Allows to override default template for product rendering."
+        "help": "Allows to override default template for whole carousel or product rendering."
+      },
+      {
+        "type": "TEXT",
+        "name": "carouselTemplate",
+        "displayName": "Carousel template",
+        "simpleValueType": true,
+        "enablingConditions": [
+          {
+            "paramName": "customTemplates",
+            "paramValue": true,
+            "type": "EQUALS"
+          }
+        ],
+        "lineCount": 15
       },
       {
         "type": "TEXT",
@@ -227,14 +241,9 @@ ___TEMPLATE_PARAMETERS___
         "simpleValueType": true,
         "enablingConditions": [
           {
-            "paramName": "customProductTemplate",
+            "paramName": "customTemplates",
             "paramValue": true,
             "type": "EQUALS"
-          }
-        ],
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
           }
         ],
         "lineCount": 15
@@ -285,6 +294,7 @@ const initWidget = () => {
     title: data.title,
     fallbackTitle: data.fallbackTitle,
     fallbackHide: data.fallbackHide,
+    carouselTemplate: data.carouselTemplate,
     productTemplate: data.productTemplate,
   });
   
