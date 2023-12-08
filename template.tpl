@@ -62,8 +62,8 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "TEXT",
-    "name": "htmlElementId",
-    "displayName": "HTML Element ID",
+    "name": "htmlElementSelector",
+    "displayName": "HTML Element Selector",
     "simpleValueType": true,
     "alwaysInSummary": true,
     "valueValidators": [
@@ -71,7 +71,40 @@ ___TEMPLATE_PARAMETERS___
         "type": "NON_EMPTY"
       }
     ],
-    "help": "ID of HTML entity, where the widget should be drawn."
+    "help": "CSS Selector of HTML entity, where the widget should be drawn."
+  },
+  {
+    "type": "SELECT",
+    "name": "htmlElementinsertPosition",
+    "displayName": "Position",
+    "macrosInSelect": false,
+    "selectItems": [
+      {
+        "value": "beforebegin",
+        "displayValue": "Before the element"
+      },
+      {
+        "value": "afterbegin",
+        "displayValue": "Inside the element, before its first child"
+      },
+      {
+        "value": "beforeend",
+        "displayValue": "Inside the element, after its last child"
+      },
+      {
+        "value": "afterend",
+        "displayValue": "After the element"
+      }
+    ],
+    "simpleValueType": true,
+    "help": "Position of carousel relative to the element - https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML",
+    "defaultValue": "beforeend",
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ],
+    "alwaysInSummary": true
   },
   {
     "type": "GROUP",
@@ -243,7 +276,8 @@ const initWidget = () => {
   }
   
   callInWindow('BianoSaas.globalInstance.drawSimilarProductsWidget', {
-    container: '#' + data.htmlElementId, 
+    container: data.htmlElementSelector,
+    insertPosition: data.htmlElementinsertPosition,
     productId: data.productId,
     numberOfProducts: data.numberOfProducts ? makeInteger(data.numberOfProducts) : undefined,
     onProductClick: onProductClick,
@@ -441,5 +475,4 @@ scenarios: []
 ___NOTES___
 
 Created on 30. 1. 2023 15:21:26
-
 
